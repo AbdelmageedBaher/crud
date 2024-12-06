@@ -76,8 +76,7 @@ function validationName() {
 }
 
 function validationUrl() {
-  var regex =
-    /^(https:\/\/www\.|http:\/\/www\.)[a-zA-Z0-9]{2,}(\.[a-zA-Z0-9]{2,})(\.[a-zA-Z0-9]{2,})?$/;
+  var regex = /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]{2,}(\.[a-zA-Z]{2,})(\.[a-zA-Z]{2,})?$/;
   var text = siteUrlInput.value;
 
   if (regex.test(text)) {
@@ -97,7 +96,11 @@ function closeItem() {
   msgAppear.classList.add("d-none");
 }
 
-function visitUrl(index) {
-    
-    window.location.href = `${index}`;
+function visitUrl(url) {
+  if (!/^https?:\/\//i.test(url)) {
+    url = `https://${url}`;
+  }
+  window.location.href = url;
+
+   
 }
